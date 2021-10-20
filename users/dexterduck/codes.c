@@ -1,5 +1,5 @@
 #include "codes.h"
-#include "eeprom.h"
+// #include "eeprom.h"
 
 bool invert_shift(uint16_t key) {
     const uint8_t LEFT_SHIFT = keyboard_report->mods & MOD_BIT(KC_LSFT);
@@ -21,22 +21,22 @@ bool invert_shift(uint16_t key) {
     return false;
 }
 
-bool toggle_oled(void) {
-    if (user_config.oled_state == OLED_STATES - 1) {
-        user_config.oled_state = 0;
-    } else {
-        user_config.oled_state++;
-    }
-    eeconfig_update_user(user_config.raw);
-    return false;
-}
+// bool toggle_oled(void) {
+//     if (user_config.oled_state == OLED_STATES - 1) {
+//         user_config.oled_state = 0;
+//     } else {
+//         user_config.oled_state++;
+//     }
+//     eeconfig_update_user(user_config.raw);
+//     return false;
+// }
 
 bool process_custom_codes(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed) {
         switch (keycode) {
             case KC_UNDERSCORE_INV: return invert_shift(KC_MINUS);
             case KC_COLON_INV: return invert_shift(KC_SCOLON);
-            case KC_OLED_TGL: return toggle_oled();
+            // case KC_OLED_TGL: return toggle_oled();
             default: return true;
         }
     }
